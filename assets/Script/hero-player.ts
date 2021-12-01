@@ -39,7 +39,7 @@ export default class NewClass extends cc.Component {
 
     }
 
-    update(dt) {
+    update(dt:number) {
         if (this._input[cc.macro.KEY.a] || this._input[cc.macro.KEY.left]) {
             this.node.x -= this._speed * dt;
         }else if(this._input[cc.macro.KEY.d] || this._input[cc.macro.KEY.right]){
