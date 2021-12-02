@@ -1,9 +1,9 @@
 {
   "__type__": "cc.AnimationClip",
-  "_name": "palyer_idle",
+  "_name": "player_idle",
   "_objFlags": 0,
   "_native": "",
-  "_duration": 0.05,
+  "_duration": 0.08333333333333333,
   "sample": 60,
   "speed": 0.1,
   "wrapMode": 2,
@@ -18,13 +18,13 @@
             }
           },
           {
-            "frame": 0.016666666666666666,
+            "frame": 0.03333333333333333,
             "value": {
               "__uuid__": "31814891-dd49-412c-8d9a-500ba2221169"
             }
           },
           {
-            "frame": 0.03333333333333333,
+            "frame": 0.06666666666666667,
             "value": {
               "__uuid__": "22952fc1-586e-41e0-aa02-33e6ab3baf30"
             }
