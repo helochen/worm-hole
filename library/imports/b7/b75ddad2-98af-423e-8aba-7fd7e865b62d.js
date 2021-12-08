@@ -37,14 +37,24 @@ var NewClass = /** @class */ (function (_super) {
         _this.text = "基础脚本";
         // LIFE-CYCLE CALLBACKS:
         _this._input = {};
-        _this._speed = 200;
+        _this._speed = 15;
         _this._animation = 'player_idle';
+        _this._ani = 'player_idle';
         return _this;
     }
     NewClass.prototype.onLoad = function () {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
         this.node.getComponent(cc.Animation).on(cc.Animation.EventType.FINISHED, this.animationFinished, this);
+        this._position = this.node.getPosition();
+        var rigid = this.node.getComponent(cc.RigidBody);
+        this._lv = rigid.linearVelocity;
+    };
+    NewClass.prototype.onBeginContact = function (contact, selfCollider, otherCollider) {
+        console.log("touch....");
+    };
+    NewClass.prototype.onEndContact = function (contact, selfCollider, otherCollider) {
+        console.log("end.........");
     };
     NewClass.prototype.onDestroy = function () {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
@@ -56,20 +66,36 @@ var NewClass = /** @class */ (function (_super) {
     };
     NewClass.prototype.onKeyDown = function (e) {
         this._input[e.keyCode] = 1;
-        var ani = 'player_idle';
-        if (this._input[cc.macro.KEY.a] || this._input[cc.macro.KEY.left]) {
-            ani = 'player_a';
+        if (this._input[cc.macro.KEY.a]) {
+            this._ani = 'player_a';
+            //this._position.x -= this._speed;
+            this._lv.y = 0;
+            this._lv.x = -this._speed;
         }
-        else if (this._input[cc.macro.KEY.d] || this._input[cc.macro.KEY.right]) {
-            ani = 'player_d';
+        else if (this._input[cc.macro.KEY.d]) {
+            this._ani = 'player_d';
+            //this._position.x += this._speed;
+            this._lv.y = 0;
+            this._lv.x = this._speed;
         }
-        else if (this._input[cc.macro.KEY.s] || this._input[cc.macro.KEY.down]) {
-            ani = 'player_s';
+        else if (this._input[cc.macro.KEY.s]) {
+            this._ani = 'player_s';
+            //this._position.y -= this._speed;
+            this._lv.x = 0;
+            this._lv.y = -this._speed;
         }
-        else if (this._input[cc.macro.KEY.w] || this._input[cc.macro.KEY.up]) {
-            ani = 'player_w';
+        else if (this._input[cc.macro.KEY.w]) {
+            this._ani = 'player_w';
+            //this._position.y += this._speed;
+            this._lv.x = 0;
+            this._lv.y = this._speed;
         }
-        this.playAnimation(ani);
+        else {
+            this._lv.x = 0;
+            this._lv.y = 0;
+        }
+        console.log("key press:" + e.keyCode + "speed:" + this._lv);
+        this.node.getComponent(cc.RigidBody).linearVelocity = this._lv;
     };
     NewClass.prototype.playAnimation = function (ani) {
         if (this._animation !== ani) {
@@ -79,22 +105,19 @@ var NewClass = /** @class */ (function (_super) {
     };
     NewClass.prototype.onKeyUp = function (e) {
         this._input[e.keyCode] = 0;
+        if (e.keyCode == cc.macro.KEY.a || e.keyCode == cc.macro.KEY.d) {
+            this._lv.x = 0;
+        }
+        else if (e.keyCode == cc.macro.KEY.s || e.keyCode == cc.macro.KEY.w) {
+            this._lv.y = 0;
+        }
+        console.log("key up:" + e.keyCode + "speed:" + this._lv);
+        this.node.getComponent(cc.RigidBody).linearVelocity = this._lv;
     };
     NewClass.prototype.start = function () {
     };
     NewClass.prototype.update = function (dt) {
-        if (this._input[cc.macro.KEY.a] || this._input[cc.macro.KEY.left]) {
-            this.node.x -= this._speed * dt;
-        }
-        else if (this._input[cc.macro.KEY.d] || this._input[cc.macro.KEY.right]) {
-            this.node.x += this._speed * dt;
-        }
-        else if (this._input[cc.macro.KEY.s] || this._input[cc.macro.KEY.down]) {
-            this.node.y -= this._speed * dt;
-        }
-        else if (this._input[cc.macro.KEY.w] || this._input[cc.macro.KEY.up]) {
-            this.node.y += this._speed * dt;
-        }
+        this.playAnimation(this._ani);
     };
     __decorate([
         property

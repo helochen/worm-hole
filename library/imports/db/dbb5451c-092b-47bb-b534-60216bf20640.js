@@ -35,24 +35,37 @@ var NewClass = /** @class */ (function (_super) {
     function NewClass() {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.plyer = null;
+        _this.enemy = null;
         return _this;
         // update (dt) {}
     }
     // LIFE-CYCLE CALLBACKS:
     NewClass.prototype.onLoad = function () {
+        console.log("...物理引擎...");
+        var c = cc.director.getCollisionManager();
+        c.enabled = true;
+        c.enabledDebugDraw = true;
+        c.enabledDrawBoundingBox = true;
+        var p = cc.director.getPhysicsManager();
+        p.enabled = true;
+        p.debugDrawFlags = 1;
+        p.gravity = cc.v2(0, 0);
         console.log("...添加角色...");
-        var role1 = cc.instantiate(this.plyer);
-        role1.setPosition(cc.v2(10, 3));
-        var role2 = cc.instantiate(this.plyer);
-        role2.setPosition(cc.v2(100, 10));
-        role1.parent = this.node;
-        role2.parent = this.node;
+        var plyer = cc.instantiate(this.plyer);
+        plyer.setPosition(cc.v2(10, 3));
+        var enemy = cc.instantiate(this.enemy);
+        enemy.setPosition(cc.v2(100, 10));
+        plyer.parent = this.node;
+        enemy.parent = this.node;
     };
     NewClass.prototype.start = function () {
     };
     __decorate([
         property(cc.Prefab)
     ], NewClass.prototype, "plyer", void 0);
+    __decorate([
+        property(cc.Prefab)
+    ], NewClass.prototype, "enemy", void 0);
     NewClass = __decorate([
         ccclass
     ], NewClass);

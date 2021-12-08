@@ -12,20 +12,30 @@ export default class NewClass extends cc.Component {
 
 
     @property(cc.Prefab)
-    plyer:cc.Prefab = null;
-
+    plyer: cc.Prefab = null;
+    @property(cc.Prefab)
+    enemy: cc.Prefab = null;
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
+        console.log("...物理引擎...");
+        let c = cc.director.getCollisionManager();
+        c.enabled=true;
+        c.enabledDebugDraw = true;
+        c.enabledDrawBoundingBox = true;
+        let p = cc.director.getPhysicsManager();
+        p.enabled = true;
+        p.debugDrawFlags = 1;
+        p.gravity  = cc.v2(0,0);
         console.log("...添加角色...");
 
-        let role1 = cc.instantiate(this.plyer);
-        role1.setPosition(cc.v2(10,3));
-        let role2 = cc.instantiate(this.plyer);
-        role2.setPosition(cc.v2(100,10));
-        
-        role1.parent = this.node;
-        role2.parent = this.node;
+        let plyer = cc.instantiate(this.plyer);
+        plyer.setPosition(cc.v2(10, 3));
+        let enemy = cc.instantiate(this.enemy);
+        enemy.setPosition(cc.v2(100, 10));
+
+        plyer.parent = this.node;
+        enemy.parent = this.node;
     }
 
     start() {

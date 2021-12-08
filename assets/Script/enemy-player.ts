@@ -10,16 +10,18 @@ const { ccclass, property } = cc._decorator;
 @ccclass
 export default class NewClass extends cc.Component {
 
-    @property
-    text: string = "基础脚本";
+    @property(cc.Label)
+    label: cc.Label = null;
 
-    // LIFE-CYCLE CALLBACKS:
+    @property
+    text: string = 'hello';
     private _input = {};
-    private _speed: number = 15;
+    private _speed: number = 5;
     private _animation: string = 'player_idle';
     private _position: cc.Vec2;
     private _ani = 'player_idle';
-    private _lv: cc.Vec2;
+    // LIFE-CYCLE CALLBACKS:
+
     onLoad() {
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.on(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -28,19 +30,13 @@ export default class NewClass extends cc.Component {
 
         this._position = this.node.getPosition();
 
-        let rigid = this.node.getComponent(cc.RigidBody);
-        this._lv = rigid.linearVelocity;
+        this.node.getComponent(cc.RigidBody).type = cc.RigidBodyType.Static;
 
     }
 
-    onBeginContact(contact: cc.PhysicsContact, selfCollider: cc.PhysicsCollider, otherCollider: cc.PhysicsCollider) {
-        console.log("touch....")
-    }
+    start() {
 
-    onEndContact(contact: cc.PhysicsContact, selfCollider: cc.PhysicsCollider, otherCollider: cc.PhysicsCollider) {
-        console.log("end.........")
     }
-
     onDestroy() {
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_DOWN, this.onKeyDown, this);
         cc.systemEvent.off(cc.SystemEvent.EventType.KEY_UP, this.onKeyUp, this);
@@ -53,32 +49,20 @@ export default class NewClass extends cc.Component {
 
     onKeyDown(e: any) {
         this._input[e.keyCode] = 1;
-        if (this._input[cc.macro.KEY.a]) {
+        if (this._input[cc.macro.KEY.left]) {
             this._ani = 'player_a';
-            //this._position.x -= this._speed;
-            this._lv.y = 0;
-            this._lv.x = -this._speed;
-        } else if (this._input[cc.macro.KEY.d]) {
+            this._position.x -= this._speed;
+        } else if (this._input[cc.macro.KEY.right]) {
             this._ani = 'player_d';
-            //this._position.x += this._speed;
-            this._lv.y = 0;
-            this._lv.x = this._speed;
-        } else if (this._input[cc.macro.KEY.s]) {
+            this._position.x += this._speed;
+        } else if (this._input[cc.macro.KEY.up]) {
             this._ani = 'player_s';
-            //this._position.y -= this._speed;
-            this._lv.x = 0;
-            this._lv.y = -this._speed;
-        } else if (this._input[cc.macro.KEY.w]) {
+            this._position.y += this._speed;
+        } else if (this._input[cc.macro.KEY.down]) {
             this._ani = 'player_w';
-            //this._position.y += this._speed;
-            this._lv.x = 0;
-            this._lv.y = this._speed;
-        } else {
-            this._lv.x = 0;
-            this._lv.y = 0;
+            this._position.y -= this._speed;
         }
-        console.log("key press:" + e.keyCode + "speed:" + this._lv);
-        this.node.getComponent(cc.RigidBody).linearVelocity = this._lv;
+
     }
 
     playAnimation(ani: string) {
@@ -90,22 +74,11 @@ export default class NewClass extends cc.Component {
 
     onKeyUp(e: any) {
         this._input[e.keyCode] = 0;
-        if (e.keyCode == cc.macro.KEY.a || e.keyCode == cc.macro.KEY.d) {
-            this._lv.x = 0;
-        }
-        else if (e.keyCode == cc.macro.KEY.s || e.keyCode == cc.macro.KEY.w) {
-            this._lv.y = 0;
-        }
-        console.log("key up:" + e.keyCode + "speed:" + this._lv);
-        this.node.getComponent(cc.RigidBody).linearVelocity = this._lv;
-    }
-
-
-    start() {
-
     }
 
     update(dt: number) {
+        this.node.x = this._position.x;
+        this.node.y = this._position.y;
         this.playAnimation(this._ani);
     }
 }

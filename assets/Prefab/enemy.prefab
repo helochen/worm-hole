@@ -1,19 +1,19 @@
 [
   {
     "__type__": "cc.Prefab",
-    "_name": "player",
+    "_name": "",
     "_objFlags": 0,
     "_native": "",
     "data": {
       "__id__": 1
     },
-    "optimizationPolicy": 2,
+    "optimizationPolicy": 0,
     "asyncLoadAssets": false,
     "readonly": false
   },
   {
     "__type__": "cc.Node",
-    "_name": "player",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -60,7 +60,7 @@
       "__type__": "TypedArray",
       "ctor": "Float64Array",
       "array": [
-        0,
+        143.263,
         0,
         0,
         0,
@@ -101,7 +101,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "aa984e82-36b2-49ff-870a-e3c410b75237"
+      "__uuid__": "22952fc1-586e-41e0-aa02-33e6ab3baf30"
     },
     "_type": 0,
     "_sizeMode": 1,
@@ -120,13 +120,14 @@
     "_id": ""
   },
   {
-    "__type__": "b75ddrSmK9CPoq6f9foZbYt",
+    "__type__": "b87b6gHBpJDM7hIzsxp5i5t",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
+    "label": null,
     "text": "hello",
     "_id": ""
   },
@@ -138,15 +139,10 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_defaultClip": {
-      "__uuid__": "de8d7f81-5b0f-44e0-bf46-c434e69d5ef9"
-    },
+    "_defaultClip": null,
     "_clips": [
       {
-        "__uuid__": "251099c9-b9ef-4106-8b5b-57a1a0a4d92f"
-      },
-      {
-        "__uuid__": "8e0a03db-4242-4af8-87dc-ca022e8d1949"
+        "__uuid__": "de8d7f81-5b0f-44e0-bf46-c434e69d5ef9"
       },
       {
         "__uuid__": "f00a68cb-fb6e-43ad-9de1-70181f4bff48"
@@ -155,10 +151,13 @@
         "__uuid__": "d1f993d8-7782-428f-9aec-17cdb3fb5796"
       },
       {
-        "__uuid__": "de8d7f81-5b0f-44e0-bf46-c434e69d5ef9"
+        "__uuid__": "8e0a03db-4242-4af8-87dc-ca022e8d1949"
+      },
+      {
+        "__uuid__": "251099c9-b9ef-4106-8b5b-57a1a0a4d92f"
       }
     ],
-    "playOnLoad": true,
+    "playOnLoad": false,
     "_id": ""
   },
   {
@@ -169,7 +168,7 @@
       "__id__": 1
     },
     "_enabled": true,
-    "_type": 2,
+    "_type": 0,
     "_allowSleep": true,
     "_gravityScale": 1,
     "_linearDamping": 0,
@@ -182,7 +181,7 @@
     "_angularVelocity": 0,
     "_fixedRotation": true,
     "enabledContactListener": false,
-    "bullet": false,
+    "bullet": true,
     "awakeOnLoad": true,
     "_id": ""
   },
@@ -197,8 +196,8 @@
     "tag": 0,
     "_density": 1,
     "_sensor": false,
-    "_friction": 0.2,
-    "_restitution": 0,
+    "_friction": 0,
+    "_restitution": 1,
     "body": null,
     "_offset": {
       "__type__": "cc.Vec2",
@@ -218,7 +217,7 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "a5c9494c-1e1d-4c23-97ba-1f22ef475fb3"
+      "__uuid__": "13334e68-8969-4df3-8847-133631c2b81e"
     },
     "fileId": "",
     "sync": false

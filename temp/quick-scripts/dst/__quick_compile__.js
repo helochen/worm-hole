@@ -1,6 +1,6 @@
 
 (function () {
-var scripts = [{"deps":{"./assets/Script/hero-player":1,"./assets/Script/game":2},"path":"preview-scripts/__qc_index__.js"},{"deps":{},"path":"preview-scripts/assets/Script/hero-player.js"},{"deps":{},"path":"preview-scripts/assets/Script/game.js"}];
+var scripts = [{"deps":{"./assets/Script/hero-player":2,"./assets/Script/enemy-player":3,"./assets/Script/game":1},"path":"preview-scripts/__qc_index__.js"},{"deps":{},"path":"preview-scripts/assets/Script/game.js"},{"deps":{},"path":"preview-scripts/assets/Script/hero-player.js"},{"deps":{},"path":"preview-scripts/assets/Script/enemy-player.js"}];
 var entries = ["preview-scripts/__qc_index__.js"];
 var bundleScript = 'preview-scripts/__qc_bundle__.js';
 
