@@ -23,9 +23,10 @@ export default class NewClass extends cc.Component {
         c.enabled=true;
         c.enabledDebugDraw = true;
         c.enabledDrawBoundingBox = true;
+        
         let p = cc.director.getPhysicsManager();
         p.enabled = true;
-        p.debugDrawFlags = 1;
+        //p.debugDrawFlags = 1;
         p.gravity  = cc.v2(0,0);
         console.log("...添加角色...");
 

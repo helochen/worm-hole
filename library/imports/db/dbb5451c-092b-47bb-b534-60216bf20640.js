@@ -48,7 +48,7 @@ var NewClass = /** @class */ (function (_super) {
         c.enabledDrawBoundingBox = true;
         var p = cc.director.getPhysicsManager();
         p.enabled = true;
-        p.debugDrawFlags = 1;
+        //p.debugDrawFlags = 1;
         p.gravity = cc.v2(0, 0);
         console.log("...添加角色...");
         var plyer = cc.instantiate(this.plyer);

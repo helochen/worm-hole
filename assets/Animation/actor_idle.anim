@@ -1,0 +1,43 @@
+{
+  "__type__": "cc.AnimationClip",
+  "_name": "actor_idle",
+  "_objFlags": 0,
+  "_native": "",
+  "_duration": 0.08333333333333333,
+  "sample": 60,
+  "speed": 0.1,
+  "wrapMode": 2,
+  "curveData": {
+    "comps": {
+      "cc.Sprite": {
+        "spriteFrame": [
+          {
+            "frame": 0.016666666666666666,
+            "value": {
+              "__uuid__": "2b24059d-666c-4ba7-a61f-8255ee25498f"
+            }
+          },
+          {
+            "frame": 0.03333333333333333,
+            "value": {
+              "__uuid__": "66ed526b-01fb-4fe7-a878-86bef0a5c068"
+            }
+          },
+          {
+            "frame": 0.05,
+            "value": {
+              "__uuid__": "e874519a-4ef3-49eb-8809-dc366be0cba2"
+            }
+          },
+          {
+            "frame": 0.06666666666666667,
+            "value": {
+              "__uuid__": "67d33b4e-24a8-4945-844e-5a54569debae"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "events": []
+}
