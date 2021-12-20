@@ -36,6 +36,7 @@ var NewClass = /** @class */ (function (_super) {
         var _this = _super !== null && _super.apply(this, arguments) || this;
         _this.plyer = null;
         _this.enemy = null;
+        _this.actor = null;
         return _this;
         // update (dt) {}
     }
@@ -55,8 +56,11 @@ var NewClass = /** @class */ (function (_super) {
         plyer.setPosition(cc.v2(10, 3));
         var enemy = cc.instantiate(this.enemy);
         enemy.setPosition(cc.v2(100, 10));
+        var actor = cc.instantiate(this.actor);
+        actor.setPosition(cc.v2(80, 5));
         plyer.parent = this.node;
         enemy.parent = this.node;
+        actor.parent = this.node;
     };
     NewClass.prototype.start = function () {
     };
@@ -66,6 +70,9 @@ var NewClass = /** @class */ (function (_super) {
     __decorate([
         property(cc.Prefab)
     ], NewClass.prototype, "enemy", void 0);
+    __decorate([
+        property(cc.Prefab)
+    ], NewClass.prototype, "actor", void 0);
     NewClass = __decorate([
         ccclass
     ], NewClass);
