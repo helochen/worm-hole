@@ -1,7 +1,8 @@
 {
   "group-list": [
     "default",
-    "role"
+    "role",
+    "wall"
   ],
   "collision-matrix": [
     [
@@ -10,7 +11,13 @@
     ],
     [
       false,
+      true,
       true
+    ],
+    [
+      false,
+      true,
+      false
     ]
   ],
   "excluded-modules": [

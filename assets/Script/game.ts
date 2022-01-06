@@ -28,20 +28,21 @@ export default class NewClass extends cc.Component {
 
         let p = cc.director.getPhysicsManager();
         p.enabled = true;
-        //p.debugDrawFlags = 1;
+        p.debugDrawFlags = 1;
         p.gravity = cc.v2(0, 0);
-        console.log("...添加角色...");
 
-        let plyer = cc.instantiate(this.plyer);
-        plyer.setPosition(cc.v2(10, 3));
+        console.log("...添加角色...");
+        let player = cc.instantiate(this.plyer);
+        player.name = "player";
+        player.setPosition(cc.v2(10, 3));
         let enemy = cc.instantiate(this.enemy);
         enemy.setPosition(cc.v2(100, 10));
         let actor = cc.instantiate(this.actor);
         actor.setPosition(cc.v2(80, 5));
 
-        plyer.parent = this.node;
-        enemy.parent = this.node;
-        actor.parent = this.node;
+        player.parent = this.node.getChildByName("roles");
+        enemy.parent = this.node.getChildByName("roles");
+        actor.parent = this.node.getChildByName("roles");
     }
 
     start() {
